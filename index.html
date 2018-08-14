@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shower Presentation Engine</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/material/styles/styles.css">
+    <style>
+        /*
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+        */
+        .b {
+            display: block;
+        }
+    </style>
+</head>
+<body class="shower list">
+
+<header class="caption">
+    <h1>Два плагина к PostCSS для управления цветом</h1>
+    <p>Владимир Кузнецов, Хантфлоу</p>
+</header>
+
+<section class="slide">
+    <h2>PostCSS бесполезен без плагинов</h2>
+</section>
+
+<section class="slide">
+    <p>I decided to implement my own cool plugin.</p>
+
+    <p><a href="https://github.com/mistakster/postcss-unwrap-at-media">postcss-unwrap-at-media</a></p>
+</section>
+
+<section class="slide">
+    <h2 class="shout">
+        <span class="b">Abstract</span>
+        <span class="b">Syntax</span>
+        <span class="b">Trees</span>
+    </h2>
+</section>
+
+<section class="slide">
+    <p>Может оказаться, что существующий плагин решает задачу, но не так как вам хотелось бы.</p>
+
+    <p>Что делать?</p>
+
+    <ul>
+        <li>отрицание</li>
+        <li>гнев</li>
+        <li>торги</li>
+        <li>депрессия</li>
+        <li>принятие</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <p>Может оказаться, что существующий плагин решает задачу, но не так как вам хотелось бы.</p>
+
+    <p>Что делать?</p>
+
+    <ul>
+        <li>смириться</li>
+        <li>сделать PR в плагин</li>
+        <li>написать свой плагин</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <p>James Steinbach</p>
+    <p><a href="https://dockyard.com/blog/2018/02/01/writing-your-first-postcss-plugin">
+        Writing Your First PostCSS Plugin
+    </a></p>
+</section>
+
+<section class="slide">
+    <h2>Обход дерева</h2>
+    <p>Типы узлов</p>
+    <ul>
+        <li>rule (div, .list)</li>
+        <li>declaration (color, background)</li>
+        <li>@rule (media, charset)</li>
+        <li>comment</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2 class="shout">Тестирование</h2>
+</section>
+
+<section class="slide">
+    <h2 class="shout">postcss-alter-color</h2>
+</section>
+
+<section class="slide">
+    <pre><code>{ from: 'darkslategray', to: '#556832' }</code></pre>
+
+    <pre><code>body { color: darkslategray; }
+p { color: #2f4f4f; }
+.quote {
+  border-left: 1px solid rgb(47, 79, 79);
+  border-right: solid hsl(180, 25%, 25%) 1px;
+}</code></pre>
+</section>
+
+<section class="slide">
+    <pre><code>{ from: 'darkslategray', to: '#556832' }</code></pre>
+
+    <pre><code>body { color: <mark>darkslategray</mark>; }
+p { color: <mark>#2f4f4f</mark>; }
+.quote {
+  border-left: 1px solid <mark>rgb(47, 79, 79)</mark>;
+  border-right: solid <mark>hsl(180, 25%, 25%)</mark> 1px;
+}</code></pre>
+</section>
+
+<section class="slide">
+    <pre><code>{ from: 'darkslategray', to: '#556832' }</code></pre>
+
+<pre><code>body { color: <mark>#556832</mark>; }
+p { color: <mark>#556832</mark>; }
+.quote {
+  border-left: 1px solid <mark>#556832</mark>;
+  border-right: solid <mark>#556832</mark> 1px;
+}</code></pre>
+</section>
+
+
+<footer class="badge">
+    <a href="https://github.com/shower/shower">Fork me on GitHub</a>
+</footer>
+
+<div class="progress"></div>
+
+<script src="shower/shower.min.js"></script>
+
+</body>
+</html>
