@@ -285,6 +285,93 @@ a { color: <mark>#556832</mark>; }
     <p>Плагин, который делает больше, чем просто поиск и замена в текстовом редакторе</p>
 </section>
 
+<section class="slide">
+    <h2><a href="https://github.com/mistakster/postcss-themes-generator">postcss-themes-generator</a></h2>
+</section>
+
+<section class="slide">
+    <p>We have a set of independent components or widgets. Following the BEM naming convention,
+        they are blocks. Every color comes from a predefined palette. All looks good.</p>
+</section>
+
+<section class="slide">
+    <p>The client wants to have 4 independent sites (“main”, “student portal”, “international” and “business”)</p>
+</section>
+
+<section class="slide">
+    <ul>
+        <li>CSS custom properties;</li>
+        <li>preprocessor variables and generate 4 different CSS files;</li>
+        <li>PostCSS to generate required styles.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <ul>
+        <li>We write CSS, as usual, assume it’s for the main site.</li>
+        <li>We use “primary”, “secondary” and “accent” modifiers to set background color or color of the decoration.
+            That’s the only point where colors are changing.</li>
+        <li>PostCSS plugin inserts additional rules if it matches modifier and target color.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <pre><code>[ { "name": "primary",
+  "match": "#e54096",
+  "themes": {
+    "portal": "#0080c5",
+    "business": "#c1d730",
+    "international": "#e5352d"
+  }
+}, { name: "secondary", &hellip; } ]</code></pre>
+</section>
+
+<section class="slide">
+    <pre><code>.tile_primary { color: #e54096 }
+.theme-portal .tile_primary { color: #0080c5 }
+.theme-business .tile_primary { color: #c1d730 }
+.theme-international .tile_primary { color: #e5352d }
+</code></pre>
+</section>
+
+<section class="slide">
+    <pre><code>.tile__badge_<mark>primary</mark>:hover {
+  background-color: #e54096;
+}
+.tile_<mark>primary</mark> .text-tile__heading {
+  color: #e54096;
+}
+</code></pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>const themedRule = rule.clone();</code>
+        <code>themedRule.selectors = themedRule.selectors</code>
+        <code>  .map(selector => `.theme-${themeName} ${selector}`);</code>
+        <code>themedRule.walkDecls(decl => {</code>
+        <code>  // меняем decl.value, если это требуется</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Подозрительное правило</h2>
+    <p>Модификатор есть, а изменить ничего нельзя</p>
+    <pre><code>rule.warn(result, 'Suspicious rule');</code></pre>
+</section>
+
+<section class="slide">
+    <h2>Светлые и тёмные цвета</h2>
+    <p>В цветовом пространстве HSL компоненты hue и saturation будут без изменений,
+    а разницу значений компоненты lightness нужно доабвить к цвету темы</p>
+</section>
+
+<section class="slide">
+    Плагин позволил команде поддерживать чистый и компактный CSS
+</section>
+
 <footer class="badge">
     <a href="https://github.com/shower/shower">Fork me on GitHub</a>
 </footer>
