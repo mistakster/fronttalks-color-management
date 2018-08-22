@@ -111,38 +111,6 @@
 </section>
 
 <section class="slide">
-    <p>I decided to implement my own cool plugin.</p>
-
-    <p><a href="https://github.com/mistakster/postcss-unwrap-at-media">postcss-unwrap-at-media</a></p>
-</section>
-
-<section class="slide">
-    <h2 class="shout">
-        <span class="b">Abstract</span>
-        <span class="b">Syntax</span>
-        <span class="b">Trees</span>
-    </h2>
-</section>
-
-<section class="slide">
-    <h2><a href="https://astexplorer.net">AST Explorer</a></h2>
-</section>
-
-<section class="slide">
-    <p>Может оказаться, что существующий плагин решает задачу, но не так как вам хотелось бы.</p>
-
-    <p>Что делать?</p>
-
-    <ul>
-        <li>отрицание</li>
-        <li>гнев</li>
-        <li>торги</li>
-        <li>депрессия</li>
-        <li>принятие</li>
-    </ul>
-</section>
-
-<section class="slide">
     <p>Может оказаться, что существующий плагин решает задачу, но не так как вам хотелось бы.</p>
 
     <p>Что делать?</p>
@@ -159,6 +127,40 @@
     <p><a href="https://dockyard.com/blog/2018/02/01/writing-your-first-postcss-plugin">
         Writing Your First PostCSS Plugin
     </a></p>
+</section>
+
+<section class="slide">
+    <h2><a href="https://github.com/mistakster/postcss-unwrap-at-media">postcss-unwrap-at-media</a></h2>
+    <div class="columns two" style="font-size: 90%;">
+        <div>
+            <pre><code><span class="comment">/* Input */</span></code>
+<code>.block { width: 100%; }</code>
+<code>@media (min-width: 720px) {</code>
+<code>  .block { width: 25%; }</code>
+<code>}</code></pre>
+        </div>
+        <div>
+            <pre><code><span class="comment">/* Output */</span></code>
+<code>.block { width: 100%; }</code>
+<code>.block { width: 25%; }</code></pre>
+        </div>
+    </div>
+</section>
+
+<section class="slide">
+    <img src="https://via.placeholder.com/960x540" class="cover w h">
+</section>
+
+<section class="slide">
+    <h2 class="shout">
+        <span class="b">Abstract</span>
+        <span class="b">Syntax</span>
+        <span class="b">Tree</span>
+    </h2>
+</section>
+
+<section class="slide">
+    <img src="img/ast-explorer.png" class="cover w h">
 </section>
 
 <section class="slide">
