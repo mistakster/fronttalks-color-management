@@ -18,6 +18,21 @@
         .c {
             color: var(--color-medium);
         }
+        .slide pre:first-child {
+            margin-top: 0;
+        }
+        .stamp {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+            transform: translate(-20px,-20px) scale(2);
+            transition: opacity 1s, transform 1s;
+        }
+        .stamp.active {
+            opacity: 1;
+            transform: translate(-20px,-20px) scale(1);
+        }
     </style>
 </head>
 <body class="shower list">
@@ -28,7 +43,11 @@
 </header>
 
 <section class="slide">
-    <h2 class="shout">PostCSS</h2>
+    <h2>Два плагина к PostCSS для управления цветом</h2>
+</section>
+
+<section class="slide">
+    <img src="img/postcss-heading.jpg" class="cover h">
 </section>
 
 <section class="slide">
@@ -37,7 +56,7 @@
 </section>
 
 <section class="slide">
-    <h2>Плагины PostCSS меняют AST</h2>
+    <h2>Плагины PostCSS изменяют AST</h2>
     <img src="img/postcss-schematic2.svg" alt="Плагины PostCSS меняют AST">
 </section>
 
@@ -123,10 +142,10 @@
 </section>
 
 <section class="slide">
-    <p>James Steinbach</p>
-    <p><a href="https://dockyard.com/blog/2018/02/01/writing-your-first-postcss-plugin">
+    <h2><a href="https://dockyard.com/blog/2018/02/01/writing-your-first-postcss-plugin">
         Writing Your First PostCSS Plugin
-    </a></p>
+    </a></h2>
+    <p>James Steinbach</p>
 </section>
 
 <section class="slide">
@@ -182,15 +201,16 @@
 </section>
 
 <section class="slide">
+    <img src="https://via.placeholder.com/960x540" class="cover w h">
+</section>
+
+<section class="slide">
     <h2 class="shout">Пример №1</h2>
 </section>
 
 <section class="slide">
-    <h2>postcss-alter-color</h2>
-</section>
-
-<section class="slide">
-    <pre><code>{ from: 'darkslategray', to: '#556832' }</code></pre>
+    <h2><a href="https://github.com/mistakster/postcss-alter-color">postcss-alter-color</a></h2>
+    <pre><code><mark>{ from: 'darkslategray', to: '#556832' }</mark></code></pre>
 
     <pre><code>p { color: darkslategray; }
 a { color: #2F4F4F; }
@@ -201,6 +221,7 @@ a { color: #2F4F4F; }
 </section>
 
 <section class="slide">
+    <h2><a href="https://github.com/mistakster/postcss-alter-color">postcss-alter-color</a></h2>
     <pre><code>{ from: 'darkslategray', to: '#556832' }</code></pre>
 
     <pre><code>p { color: <mark>darkslategray</mark>; }
@@ -212,6 +233,7 @@ a { color: <mark>#2F4F4F</mark>; }
 </section>
 
 <section class="slide">
+    <h2><a href="https://github.com/mistakster/postcss-alter-color">postcss-alter-color</a></h2>
     <pre><code>{ from: 'darkslategray', to: '#556832' }</code></pre>
 
     <pre><code>p { color: <mark>#556832</mark>; }
@@ -223,12 +245,13 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <pre>
+    <pre style="font-size: 90%;">
         <code>function plugin(options) {</code>
-        <code>  return function(root) {</code>
-        <code>    if (decl.value === options.from) {</code>
-        <code>      decl.value = options.to;</code>
-        <code>    }</code>
+        <code>  return function (root) {</code>
+        <code>    root.walkDecls(function (decl) {</code>
+        <code>      if (decl.value === options.from)</code>
+        <code>        decl.value = options.to;</code>
+        <code>    });</code>
         <code>  };</code>
         <code>}</code>
         <code>module.exports = postcss.plugin('alter-color', plugin);</code>
@@ -239,7 +262,7 @@ a { color: <mark>#556832</mark>; }
     <h2>Варианты записи цвета</h2>
     <div class="columns two">
         <div>
-            <p>Сплошные цвета</p>
+            <p><strong>Сплошные цвета</strong></p>
             <ul>
                 <li>white</li>
                 <li>#333</li>
@@ -249,7 +272,7 @@ a { color: <mark>#556832</mark>; }
             </ul>
         </div>
         <div class="next">
-            <p>Цвета с прозрачностью</p>
+            <p><strong>Цвета с прозрачностью</strong></p>
             <ul>
                 <li>rgba(47, 79, 79, 0.5)</li>
                 <li>hsla(180, 25%, 25%, 0.5)</li>
@@ -261,18 +284,26 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <h2>Сравниваем цвета в различных записях</h2>
-
-    <p>parse-color</p>
+    <h2><a href="https://github.com/substack/parse-color">parse-color</a></h2>
+    <pre><code>{ rgb: [ 255, 165, 0 ],
+  hsl: [ 39, 100, 50 ],
+  keyword: 'orange',
+  hex: '#ffa500',
+  rgba: [ 255, 165, 0, 1 ],
+  hsla: [ 39, 100, 50, 1 ] }</code></pre>
 </section>
 
 <section class="slide">
     <h2>Разбор значения узла decl</h2>
-    <pre><code>#main { border: 1px solid: #333 }</code></pre>
+    <pre><code>#main { border: 1px solid: #2F4F4F }</code></pre>
     <pre><code>decl {
   props: "border",
-  value: "1px solid #333"
+  value: "1px solid #2F4F4F"
 }</code></pre>
+</section>
+
+<section class="slide">
+    <img src="img/lamp.svg" alt="Идея!" class="cover w h">
 </section>
 
 <section class="slide">
@@ -286,14 +317,18 @@ a { color: <mark>#556832</mark>; }
         <code>    decl.value,</code>
         <code>    { context: 'value' }</code>
         <code>  );</code>
-        <code>  // тут можно изменить parsedValue</code>
+        <code>  // тут можно модифицировать parsedValue</code>
         <code>  decl.value = cssTree.generate(parsedValue);</code>
         <code>});</code>
     </pre>
 </section>
 
 <section class="slide">
-    <pre><code>"1px solid #333"</code></pre>
+    <img src="img/inception-toupie.jpg" alt="Волчок" class="cover w h">
+</section>
+
+<section class="slide">
+    <pre><code>"1px solid #2F4F4F"</code></pre>
 
     <pre>
         <code>{ type: "Value", children: [</code>
@@ -301,7 +336,7 @@ a { color: <mark>#556832</mark>; }
         <code>  { type: "WhiteSpace", value: " " },</code>
         <code>  { type: "Identifier", name: "solid" },</code>
         <code>  { type: "WhiteSpace", value: " " },</code>
-        <code>  { type: "HexColor", value: "333" }</code>
+        <code>  { type: "HexColor", value: "2F4F4F" }</code>
         <code>] }</code>
     </pre>
 </section>
@@ -317,21 +352,23 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <pre><code>rgb(31, 31, 31)</code></pre>
-    <pre>
+    <pre><code>rgb(47, 79, 79)</code></pre>
+
+    <pre style="font-size: 90%;">
         <code>{ type: "Value", children: [</code>
         <code>  { type: "Function", name: "rgb", "children": [</code>
-        <code>  { type: "Number", value: "31"},</code>
-        <code>  { type: "Operator", value: ","},</code>
-        <code>  { type: "Number", value: "31"},</code>
-        <code>  { type: "Operator", value: ","},</code>
-        <code>  { type: "Number", value: "31"}</code>
+        <code>    { type: "Number", value: "47"},</code>
+        <code>    { type: "Operator", value: ","},</code>
+        <code>    { type: "Number", value: "79"},</code>
+        <code>    { type: "Operator", value: ","},</code>
+        <code>    { type: "Number", value: "79"}</code>
         <code>  ] }</code>
         <code>] }</code>
     </pre>
 </section>
 
 <section class="slide">
+    <h2>Типы узлов CSSTree, которые могут содержать цвет</h2>
     <ul>
         <li>Identifier <span class="c">darkslategray</span></li>
         <li>HexColor <span class="c">#2F4F4F</span></li>
@@ -341,36 +378,77 @@ a { color: <mark>#556832</mark>; }
 
 <section class="slide">
     <pre>
-        <code>cssTree.walk(parsedValue, {</code>
-        <code>  visit: 'Identifier',</code>
-        <code>  <mark>enter</mark>: (node, item, list) => {</code>
+        <code>function <mark>visitor</mark>(node, item, list) {</code>
+        <code>  if (node.name === 'darkslategray') {</code>
         <code>    // изменяем node</code>
         <code>  }</code>
+        <code>}</code>
+        <code>cssTree.walk(parsedValue, {</code>
+        <code>  visit: 'Identifier',</code>
+        <code>  <mark>enter: visitor</mark></code>
         <code>});</code>
     </pre>
 </section>
 
 <section class="slide">
     <pre>
-        <code><mark>enter</mark>: (node, item, list) => {</code>
-        <code>  const data = cssTree.fromPlainObject({</code>
-        <code>    type: 'HexColor',</code>
-        <code>    value: replaceValue(node)</code>
-        <code>  });</code>
-        <code>  list.replace(item, list.createItem(data));</code>
+        <code>function visitor(node, item, list) {</code>
+        <code>  if (node.name === '<mark>darkslategray</mark>') {</code>
+        <code>    const data = cssTree.fromPlainObject({</code>
+        <code>      type: 'HexColor',</code>
+        <code>      value: '<mark>556832</mark>'</code>
+        <code>    });</code>
+        <code>    list.replace(item, list.createItem(data));</code>
+        <code>  }</code>
         <code>}</code>
     </pre>
 </section>
 
 <section class="slide">
-    <h2>rgb(), rgba(), hsl() и hsla()</h2>
-    <p>Цветовые функции содержат вложенную структуру</p>
-    <p>Каждый цветовой компонен нужно сравнивать отдельно</p>
+    <h2 class="shout">
+        <span class="b">rgb(), rgba(),</span>
+        <span class="b">hsl() и hsla()</span>
+    </h2>
 </section>
 
 <section class="slide">
+    <pre>
+        <code>{ type: "Value", children: [</code>
+        <code>  { type: "Function", name: "rgb", "children": [</code>
+        <code>    { type: "Number", value: "47"},</code>
+        <code>    { type: "Operator", value: ","},</code>
+        <code>    { type: "Number", value: "79"},</code>
+        <code>    { type: "Operator", value: ","},</code>
+        <code>    { type: "Number", value: "79"}</code>
+        <code>  ] }</code>
+        <code>] }</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>{ type: "Value", children: [</code>
+        <code>  { type: "Function", name: "rgb", "children": [</code>
+        <code>    { type: "Percentage", value: "18.4%"},</code>
+        <code>    { type: "Operator", value: ","},</code>
+        <code>    { type: "Percentage", value: "30.98%"},</code>
+        <code>    { type: "Operator", value: ","},</code>
+        <code>    { type: "Percentage", value: "30.98%"}</code>
+        <code>  ] }</code>
+        <code>] }</code>
+    </pre>
+    <img src="img/emoji-blow.png" alt="Взрывающаяся голова" width="180" height="180" class="stamp next">
+</section>
+
+
+<section class="slide">
     <h2><a href="https://github.com/mistakster/postcss-alter-color">postcss-alter-color</a></h2>
-    <p>Плагин, который делает больше, чем просто поиск и замена в текстовом редакторе</p>
+    <ul>
+        <li>Познакомились с AST explorer.</li>
+        <li>Разобрались с API PostCSS и CSSTree.</li>
+        <li>Написали плагин, который делает больше, чем просто поиск и замена в текстовом редакторе.</li>
+        <li></li>
+    </ul>
 </section>
 
 <section class="slide">
