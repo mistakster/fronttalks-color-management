@@ -14,11 +14,10 @@
         .b {
             display: block;
         }
-
         .c {
             color: var(--color-medium);
         }
-        .slide pre:first-child {
+        .slide pre {
             margin-top: 0;
         }
         .stamp {
@@ -33,6 +32,16 @@
             opacity: 1;
             transform: translate(-20px,-20px) scale(1);
         }
+        .color-sample-col {
+            width: 150px !important;
+            text-align: center !important;
+        }
+        .color-sample {
+            display: block;
+            height: 3em;
+            width: 3em;
+            margin: 0.5em auto;
+        }
     </style>
 </head>
 <body class="shower list">
@@ -46,7 +55,7 @@
     <h2>Два плагина к PostCSS для управления цветом</h2>
 </section>
 
-<section class="slide">
+<section class="slide clear">
     <img src="img/postcss-heading.jpg" class="cover h">
 </section>
 
@@ -178,7 +187,7 @@
     </h2>
 </section>
 
-<section class="slide">
+<section class="slide clear">
     <img src="img/ast-explorer.png" class="cover w h">
     <!--
     https://astexplorer.net/#/gist/43328fc584ad1b12b54120222632a8d2/c8722503e6fb77d6a4163d7b14617946facffcb2
@@ -302,7 +311,7 @@ a { color: <mark>#556832</mark>; }
 }</code></pre>
 </section>
 
-<section class="slide">
+<section class="slide clear">
     <img src="img/lamp.svg" alt="Идея!" class="cover w h">
 </section>
 
@@ -323,7 +332,7 @@ a { color: <mark>#556832</mark>; }
     </pre>
 </section>
 
-<section class="slide">
+<section class="slide clear">
     <img src="img/inception-toupie.jpg" alt="Волчок" class="cover w h">
 </section>
 
@@ -447,7 +456,6 @@ a { color: <mark>#556832</mark>; }
         <li>Познакомились с AST explorer.</li>
         <li>Разобрались с API PostCSS и CSSTree.</li>
         <li>Написали плагин, который делает больше, чем просто поиск и замена в текстовом редакторе.</li>
-        <li></li>
     </ul>
 </section>
 
@@ -457,22 +465,70 @@ a { color: <mark>#556832</mark>; }
 
 <section class="slide">
     <h2><a href="https://github.com/mistakster/postcss-themes-generator">postcss-themes-generator</a></h2>
+    <table style="table-layout: fixed;">
+        <tbody>
+            <tr>
+                <th class="color-sample-col">&nbsp;</th>
+                <th class="color-sample-col">Website</th>
+                <th class="color-sample-col">Portal</th>
+                <th class="color-sample-col">Business</th>
+                <th class="color-sample-col">International</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Primary</th>
+                <td><span class="color-sample" style="background: #e54096">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #e5352d">&nbsp;</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Secondary</th>
+                <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #044466">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #044466">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #007bc0">&nbsp;</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Accent</th>
+                <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
+                <td><span class="color-sample" style="background: #bd0a26">&nbsp;</span></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="slide clear">
+    <h2>Тема «Website»</h2>
+    <img src="img/theme-website.png" style="width: 100%">
+</section>
+
+<section class="slide clear">
+    <h2>Тема «Student Portal»</h2>
+    <img src="img/theme-portal.png" style="width: 100%">
+</section>
+
+<section class="slide clear">
+    <h2>Тема «International»</h2>
+    <img src="img/theme-international.png" style="width: 100%">
+</section>
+
+<section class="slide clear">
+    <h2>Тема «Business»</h2>
+    <img src="img/theme-business.png" style="width: 100%">
 </section>
 
 <section class="slide">
-    <p>We have a set of independent components or widgets. Following the BEM naming convention,
-        they are blocks. Every color comes from a predefined palette. All looks good.</p>
-</section>
-
-<section class="slide">
-    <p>The client wants to have 4 independent sites (“main”, “student portal”, “international” and “business”)</p>
-</section>
-
-<section class="slide">
+    <h2>Решения</h2>
     <ul>
         <li>CSS custom properties;</li>
-        <li>preprocessor variables and generate 4 different CSS files;</li>
-        <li>PostCSS to generate required styles.</li>
+        <li>переменные препроцессора и генерация 4 различных CSS-файлов;</li>
+        <li>использовать PostCSS для генерации стилей.</li>
     </ul>
 </section>
 
