@@ -42,6 +42,12 @@
             width: 3em;
             margin: 0.5em auto;
         }
+        .tiny-sample {
+            display: inline-block;
+            width: 0.8em;
+            height: 0.8em;
+            vertical-align: baseline;
+        }
     </style>
 </head>
 <body class="shower list">
@@ -533,18 +539,28 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <h2></h2>
+    <h2>CSS custom properties</h2>
+    <pre>
+        <code>:root                { --primary-color: <span style="background: #e54096;" class="tiny-sample"></span> #e54096; }</code>
+        <code>.theme-portal        { --primary-color: <span style="background: #0080c5;" class="tiny-sample"></span> #0080c5; }</code>
+        <code>.theme-business      { --primary-color: <span style="background: #c1d730;" class="tiny-sample"></span> #c1d730; }</code>
+        <code>.theme-international { --primary-color: <span style="background: #e5352d;" class="tiny-sample"></span> #e5352d; }</code>
+        <code>.tile_primary { background: var(--primary-color); }</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Условия задачи</h2>
     <ul>
-        <li>We write CSS, as usual, assume it’s for the main site.</li>
-        <li>We use “primary”, “secondary” and “accent” modifiers to set background color or color of the decoration.
-            That’s the only point where colors are changing.</li>
-        <li>PostCSS plugin inserts additional rules if it matches modifier and target color.</li>
+        <li>Мы пишем CSS как обычно, используя цветовую схему главного сайта.</li>
+        <li>Мы используем модификаторы блока или элемента («primary», «secondary» и «accent») для назначения цвета.</li>
+        <li>Плагин для PostCSS генерирует дополнительные селекторы, изменяя в них цвет согласно схемы.</li>
     </ul>
 </section>
 
 <section class="slide">
-    <pre><code>[ { "name": "primary",
-  "match": "#e54096",
+    <h2>Конфигурация</h2>
+    <pre><code>[ { "name": "primary", "match": "#e54096",
   "themes": {
     "portal": "#0080c5",
     "business": "#c1d730",
@@ -554,48 +570,81 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <pre><code>.tile_primary { color: #e54096 }
-.theme-portal .tile_primary { color: #0080c5 }
-.theme-business .tile_primary { color: #c1d730 }
-.theme-international .tile_primary { color: #e5352d }
-</code></pre>
-</section>
-
-<section class="slide">
-    <pre><code>.tile__badge_<mark>primary</mark>:hover {
-  background-color: #e54096;
-}
-.tile_<mark>primary</mark> .text-tile__heading {
-  color: #e54096;
-}
-</code></pre>
+    <h2>Результат</h2>
+    <pre>
+        <code class="mark">.tile_primary { color: <span style="background: #e54096;" class="tiny-sample"></span> #e54096 }</code>
+        <code>.theme-portal .tile_primary { color: <span style="background: #0080c5;" class="tiny-sample"></span> #0080c5 }</code>
+        <code>.theme-business .tile_primary { color: <span style="background: #c1d730;" class="tiny-sample"></span> #c1d730 }</code>
+        <code>.theme-international .tile_primary { color: <span style="background: #e5352d;" class="tiny-sample"></span> #e5352d }</code>
+    </pre>
 </section>
 
 <section class="slide">
     <pre>
-        <code>const themedRule = rule.clone();</code>
-        <code>themedRule.selectors = themedRule.selectors</code>
-        <code>  .map(selector => `.theme-${themeName} ${selector}`);</code>
-        <code>themedRule.walkDecls(decl => {</code>
-        <code>  // меняем decl.value, если это требуется</code>
-        <code>});</code>
+        <code>function makeThemedRule(rule, themeName, config) {</code>
+        <code>  const themedRule = rule.clone();</code>
+        <code>  themedRule.selectors = themedRule.selectors</code>
+        <code>    .map(selector => `.theme-${themeName} ${selector}`);</code>
+        <code>  const processor = getDeclProcessor(themeName, config);</code>
+        <code>  themedRule.walkDecls(processor);</code>
+        <code>  return themedRule;</code>
+        <code>}</code>
     </pre>
 </section>
 
 <section class="slide">
     <h2>Подозрительное правило</h2>
-    <p>Модификатор есть, а изменить ничего нельзя</p>
+    <p>Модификатор есть, а изменить ничего нельзя!</p>
     <pre><code>rule.warn(result, 'Suspicious rule');</code></pre>
 </section>
 
 <section class="slide">
-    <h2>Светлые и тёмные цвета</h2>
+    <h2>Сложные случаи</h2>
+    <pre>
+        <code>.tile_<mark>primary</mark> .text-tile__heading {</code>
+        <code>  color: #e54096;</code>
+        <code>}</code>
+        <code>.tile__badge_<mark>primary</mark>:hover {</code>
+        <code>  background-color: #e54096;</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Светлые и тёмные оттенки</h2>
     <p>В цветовом пространстве HSL компоненты hue и saturation будут без изменений,
     а разницу значений компоненты lightness нужно доабвить к цвету темы</p>
 </section>
 
 <section class="slide">
-    Плагин позволил команде поддерживать чистый и компактный CSS
+    <h2><a href="https://github.com/mistakster/postcss-themes-generator">postcss-themes-generator</a></h2>
+    <ul>
+        <li>Плагин позволил команде поддерживать чистый и компактный CSS.</li>
+        <li>Плагин обрабатывает оттенки искомого цвета.</li>
+        <li>Сгенерированные стили работают в старых браузерах.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2 class="shout">Спасибо!</h2>
+</section>
+
+<section class="slide" id="contacts">
+    <h2>Владимир Кузнецов</h2>
+    <p>
+        <img src="img/twitter.svg" style="width: 24px; vertical-align: middle">
+        <a href="https://twitter.com/mistakster" target="_blank">@mistakster</a> (English)<br>
+        <img src="img/twitter.svg" style="width: 24px; vertical-align: middle">
+        <a href="https://twitter.com/mista_k" target="_blank">@mista_k</a> (больше про жизнь)
+    </p>
+    <p>
+        <img src="img/globe.svg" style="width: 24px; vertical-align: middle">
+        <a href="https://noteskeeper.ru" target="_blank">noteskeeper.ru</a>
+    </p>
+    <p>
+        Слайды презентации:
+        <a href="https://mistakster.github.io/fronttalks-color-management/">mistakster.github.io/fronttalks-color-management</a>
+    </p>
 </section>
 
 <footer class="badge">
