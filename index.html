@@ -588,13 +588,81 @@ a { color: <mark>#556832</mark>; }
 
 <section class="slide">
     <pre>
+        <code>const plugin = options => (root, result) => {</code>
+		<code>  root.walkRules(rule => {</code>
+        <code class="mark next">    const config = getConfig(rule, options);</code>
+        <code>    const themed = Object.keys(config.themes)</code>
+        <code>      .map(name => makeThemedRule(rule, name, config));</code>
+        <code>    themed.unshift(rule.clone());</code>
+        <code>    rule.replaceWith(themed);</code>
+        <code>  });</code>
+        <code>};</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>function getConfig(rule, options) {</code>
+        <code>  return options.find(config => {</code>
+        <code>    const p = `_${config.name}(:[a-zA-Z]+)?(\\s.*)?$`;</code>
+        <code>    const rx = new RegExp(p);</code>
+        <code>    return rule.selectors.every(s => rx.test(s));</code>
+        <code>  });</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>{</code>
+        <code>  "name": "primary",</code>
+        <code>  "match": "#e54096",</code>
+        <code>  "themes": {</code>
+        <code>    "portal": "#0080c5",</code>
+        <code>    "business": "#c1d730",</code>
+        <code>    "international": "#e5352d"</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>const plugin = options => (root, result) => {</code>
+		<code>  root.walkRules(rule => {</code>
+        <code>    const config = getConfig(rule, options);</code>
+        <code>    const themed = Object.keys(config.themes)</code>
+        <code class="mark next">      .map(name => makeThemedRule(rule, name, config));</code>
+        <code>    themed.unshift(rule.clone());</code>
+        <code>    rule.replaceWith(themed);</code>
+        <code>  });</code>
+        <code>};</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
         <code>function makeThemedRule(rule, themeName, config) {</code>
         <code>  const themedRule = rule.clone();</code>
         <code>  themedRule.selectors = themedRule.selectors</code>
         <code>    .map(selector => `.theme-${themeName} ${selector}`);</code>
-        <code>  const processor = getDeclProcessor(themeName, config);</code>
+        <code class="mark next">  const processor = getDeclProcessor(themeName, config);</code>
         <code>  themedRule.walkDecls(processor);</code>
         <code>  return themedRule;</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>function getDeclProcessor(themeName, config) {</code>
+        <code>  return decl => {</code>
+        <code>    const ast = cssTree</code>
+        <code>      .parse(decl.value, { context: 'value' });</code>
+        <code>    cssTree.walk(ast, { visit: 'HexColor', &hellip; });</code>
+        <code>    cssTree.walk(ast, { visit: 'Function', &hellip; });</code>
+        <code>    decl.value = cssTree.generate(ast);</code>
+        <code>  };</code>
         <code>}</code>
     </pre>
 </section>
