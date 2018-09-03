@@ -152,11 +152,11 @@
         Что делать?
     </p>
 
-    <ul class="next">
+    <ol class="next">
         <li>смириться</li>
         <li>сделать PR в плагин</li>
         <li>написать свой плагин</li>
-    </ul>
+    </ol>
 
     <img src="img/doubt.svg" class="place b r" style="width: 300px; bottom: 30px; right: 30px;">
 </section>
@@ -207,13 +207,27 @@
 
 <section class="slide">
     <h2>Обход дерева</h2>
-    <p>Типы узлов</p>
-    <ul>
-        <li>rule (div, .list)</li>
-        <li>declaration (color, background)</li>
-        <li>@rule (media, charset)</li>
-        <li>comment</li>
-    </ul>
+    <div class="columns two">
+        <div>
+            <p><strong>Типы узлов</strong></p>
+            <ul>
+                <li>rule <span class="c">(div, .list)</span></li>
+                <li>declaration <span class="c">(color, background)</span></li>
+                <li>@rule <span class="c">(media, charset)</span></li>
+                <li>comment</li>
+            </ul>
+        </div>
+        <div>
+            <p><strong>Методы обхода</strong></p>
+            <ul>
+                <li>walkRules()</li>
+                <li>walkDecls()</li>
+                <li>walkAtRules()</li>
+                <li>walkComments()</li>
+                <li>walk()</li>
+            </ul>
+        </div>
+    </div>
 </section>
 
 <section class="slide">
