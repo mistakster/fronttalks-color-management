@@ -424,21 +424,21 @@ a { color: <mark>#556832</mark>; }
 
 <section class="slide">
     <pre>
-        <code>function <mark>visitor</mark>(node, item, list) {</code>
+        <code>function <mark>identifierVisitor</mark>(node, item, list) {</code>
         <code>  if (node.name === 'darkslategray') {</code>
         <code>    // изменяем node</code>
         <code>  }</code>
         <code>}</code>
         <code>cssTree.walk(parsedValue, {</code>
         <code>  visit: 'Identifier',</code>
-        <code>  <mark>enter: visitor</mark></code>
+        <code>  <mark>enter: identifierVisitor</mark></code>
         <code>});</code>
     </pre>
 </section>
 
 <section class="slide">
     <pre>
-        <code>function visitor(node, item, list) {</code>
+        <code>function identifierVisitor(node, item, list) {</code>
         <code>  if (node.name === '<mark>darkslategray</mark>') {</code>
         <code>    const data = cssTree.fromPlainObject({</code>
         <code>      type: 'HexColor',</code>
@@ -447,6 +447,19 @@ a { color: <mark>#556832</mark>; }
         <code>    list.replace(item, list.createItem(data));</code>
         <code>  }</code>
         <code>}</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <pre>
+        <code>cssTree.walk(parsedValue, {</code>
+        <code>  visit: 'HexColor',</code>
+        <code>  enter: hexColorVisitor</code>
+        <code>});</code>
+        <code>cssTree.walk(parsedValue, {</code>
+        <code>  visit: 'Function',</code>
+        <code>  enter: functionVisitor</code>
+        <code>});</code>
     </pre>
 </section>
 
