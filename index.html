@@ -49,7 +49,7 @@
             vertical-align: baseline;
         }
 
-        :root {
+        #cover {
             --spot-0-x: 0;
             --spot-0-y: 0;
             --spot-1-x: 0;
@@ -68,22 +68,16 @@
             mix-blend-mode: screen;
         }
         .spot_0 {
-            box-shadow: inset 0 0 10px red;
-            background: rgba(255,0,0,0.1);
-            margin-left: var(--spot-0-x);
-            margin-top: var(--spot-0-y);
+            background: rgb(120,0,0);
+            transform: translate(var(--spot-0-x), var(--spot-0-y));
         }
         .spot_1 {
-            box-shadow: inset 0 0 10px green;
-            background: rgba(0,255,0,0.1);
-            margin-left: var(--spot-1-x);
-            margin-top: var(--spot-1-y);
+            background: rgb(0,120,0);
+            transform: translate(var(--spot-1-x), var(--spot-1-y));
         }
         .spot_2 {
-            box-shadow: inset 0 0 10px blue;
-            background: rgba(0,0,255,0.1);
-            margin-left: var(--spot-2-x);
-            margin-top: var(--spot-2-y);
+            background: rgb(0,0,120);
+            transform: translate(var(--spot-2-x), var(--spot-2-y));
         }
     </style>
 </head>
@@ -94,14 +88,14 @@
     <p>Владимир Кузнецов, Хантфлоу</p>
 </header>
 
-<section class="slide clear" id="cover">
+<section id="cover" class="slide clear" style="background: black; color: white;">
     <div class="cover w h">
         <div class="spot spot_0"></div>
         <div class="spot spot_1"></div>
         <div class="spot spot_2"></div>
     </div>
     <div style="text-align: center">
-        <h2 style="margin-top: 80px;">
+        <h2 style="margin-top: 80px; color: white">
             Два плагина к PostCSS для управления цветом
         </h2>
         <p>Владимир Кузнецов, Хантфлоу</p>
@@ -864,18 +858,17 @@ a { color: <mark>#556832</mark>; }
 	'use strict';
 
 	(function () {
-		var params = [[2500, 3300], [3100, 2100], [2900, 2700]];
-		var start = Math.random() * 1e8 + 1e6;
-		var isRunning = false;
+		const coverElement = document.getElementById('cover');
+		const params = [[2500, 3300], [3100, 2100], [2900, 2700]];
+		const start = Math.random() * 1e8 + 1e6;
+		let isRunning = false;
 
         function frame(t) {
-			var x, y;
-
-			for (var i = 0; i < params.length; i++) {
-				x = Math.round(300 * Math.cos(t / params[i][0]));
-				y = Math.round(200 * Math.sin(t / params[i][1]));
-				document.documentElement.style.setProperty('--spot-' + i + '-x', x + 'px');
-				document.documentElement.style.setProperty('--spot-' + i + '-y', y + 'px');
+			for (let i = 0; i < params.length; i++) {
+				const x = Math.round(300 * Math.cos(t / params[i][0]));
+				const y = Math.round(200 * Math.sin(t / params[i][1]));
+				coverElement.style.setProperty('--spot-' + i + '-x', x + 'px');
+				coverElement.style.setProperty('--spot-' + i + '-y', y + 'px');
 			}
         }
 
@@ -888,8 +881,8 @@ a { color: <mark>#556832</mark>; }
             });
         }
 
-		var observer = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
+		const observer = new MutationObserver((mutations) => {
+			mutations.forEach((mutation) => {
 				if (mutation.target.classList.contains('active')) {
 					if (isRunning) {
 						return;
@@ -902,7 +895,7 @@ a { color: <mark>#556832</mark>; }
 			});
 		});
 
-		observer.observe(document.getElementById('cover'), {
+		observer.observe(coverElement, {
 			attributes: true
         });
 	}());
