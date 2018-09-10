@@ -186,7 +186,8 @@
 
 <section class="slide">
     <p>
-        Может оказаться, что существующий плагин решает задачу, но не так как вам хотелось бы.
+        Может оказаться, что существующий плагин решает задачу,<br>
+        но не так как вам хотелось бы.<br>
         Что делать?
     </p>
 
@@ -197,6 +198,10 @@
     </ol>
 
     <img src="img/doubt.svg" class="place b r" style="width: 300px; bottom: 30px; right: 30px;">
+</section>
+
+<section class="slide">
+    <h2 class="shout">Мой первый плагин</h2>
 </section>
 
 <section class="slide">
@@ -258,7 +263,7 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <h2 class="shout">AST explorer</h2>
+    <h2 class="shout"><a href="https://api.postcss.org">api.postcss.org</a></h2>
 </section>
 
 <section class="slide">
@@ -273,7 +278,7 @@ a { color: <mark>#556832</mark>; }
                 <li>comment</li>
             </ul>
         </div>
-        <div class="next">
+        <div>
             <p><strong>Методы обхода</strong></p>
             <ul>
                 <li>walkRules()</li>
@@ -338,7 +343,8 @@ a { color: <mark>#556832</mark>; }
 <section class="slide">
     <h2>Разбор значения узла decl</h2>
     <pre><code>#main { border: 1px solid #2F4F4F }</code></pre>
-    <pre><code>decl: {
+    <pre><code>{
+  type: "decl",
   props: "border",
   value: "1px solid #2F4F4F"
 }</code></pre>
@@ -570,15 +576,6 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
-    <h2>Решения</h2>
-    <ul>
-        <li>CSS custom properties;</li>
-        <li>переменные препроцессора и генерация 4 различных CSS-файлов;</li>
-        <li>использовать PostCSS для генерации стилей.</li>
-    </ul>
-</section>
-
-<section class="slide">
     <h2>CSS custom properties</h2>
     <pre>
         <code>:root                { --primary-color: <span style="background: #e54096;" class="tiny-sample"></span> #e54096; }</code>
@@ -590,11 +587,20 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
+    <h2>Решения</h2>
+    <ul>
+        <li>CSS custom properties;</li>
+        <li>переменные препроцессора и генерация 4 различных CSS-файлов;</li>
+        <li>использовать PostCSS для генерации стилей.</li>
+    </ul>
+</section>
+
+<section class="slide">
     <h2>Условия задачи</h2>
     <ul>
-        <li>Мы пишем CSS как обычно, используя цветовую схему главного сайта.</li>
-        <li>Мы используем модификаторы блока или элемента («primary», «secondary» и «accent») для назначения цвета.</li>
-        <li>Плагин для PostCSS генерирует дополнительные селекторы, изменяя в них цвет согласно схемы.</li>
+        <li>Мы&nbsp;пишем CSS как обычно, используя цветовую схему главного сайта.</li>
+        <li>Мы&nbsp;используем модификаторы блока или элемента (&laquo;primary&raquo;, &laquo;secondary&raquo; и&nbsp;&laquo;accent&raquo;) для указания цвета.</li>
+        <li>Плагин для PostCSS генерирует дополнительные селекторы, изменяя в&nbsp;них цвет согласно схемы.</li>
     </ul>
 </section>
 
@@ -731,6 +737,7 @@ a { color: <mark>#556832</mark>; }
 </section>
 
 <section class="slide">
+    <h2>Светлые и тёмные оттенки</h2>
     <table>
         <tbody>
             <tr>
@@ -796,8 +803,33 @@ a { color: <mark>#556832</mark>; }
             </tr>
         </tbody>
     </table>
+</section>
+
+<section class="slide">
     <p>В цветовом пространстве HSL компоненты hue и saturation будут без изменений,
         а разницу значений компоненты lightness нужно добавить к цвету темы.</p>
+
+    <p>
+        <span style="background: #f19ac7;" class="tiny-sample"></span> #f19ac7
+        <span class="next">
+            &rarr; <span style="background: hsl(329, 76%, 77%);" class="tiny-sample"></span> hsl(329, 76%, 77%)
+        </span>
+        <span class="next">
+            &rarr; <span style="background: hsl(329, 76%, 57%);" class="tiny-sample"></span> hsl(329, 76%, 57%)
+        </span>
+        <span class="next">
+            &rarr; &Delta;l = 20%
+        </span>
+    </p>
+    <p class="next">
+        <span style="background: #0080c5;" class="tiny-sample"></span> #0080c5
+        <span class="next">
+            &rarr; <span style="background: hsl(201, 100%, 39%);" class="tiny-sample"></span> hsl(201, 100%, 39%)
+        </span>
+        <span class="next">
+            &rarr; <span style="background: hsl(201, 100%, 59%);" class="tiny-sample"></span> hsl(201, 100%, 59%)
+        </span>
+    </p>
 </section>
 
 <section class="slide">
