@@ -14,34 +14,41 @@
         .b {
             display: block;
         }
+
         .c {
             color: var(--color-medium);
         }
+
         .slide pre {
             margin-top: 0;
         }
+
         .stamp {
             position: absolute;
             bottom: 0;
             right: 0;
             opacity: 0;
-            transform: translate(-20px,-20px) scale(2);
+            transform: translate(-20px, -20px) scale(2);
             transition: opacity 1s, transform 1s;
         }
+
         .stamp.active {
             opacity: 1;
-            transform: translate(-20px,-20px) scale(1);
+            transform: translate(-20px, -20px) scale(1);
         }
+
         .color-sample-col {
             width: 150px !important;
             text-align: center !important;
         }
+
         .color-sample {
             display: block;
             height: 3em;
             width: 3em;
             margin: 0.5em auto;
         }
+
         .tiny-sample {
             display: inline-block;
             width: 0.8em;
@@ -69,16 +76,19 @@
             top: calc(50% - 300px);
             mix-blend-mode: screen;
         }
+
         .spot_0 {
-            background: rgb(120,0,0);
+            background: rgb(120, 0, 0);
             transform: translate(var(--spot-0-x), var(--spot-0-y));
         }
+
         .spot_1 {
-            background: rgb(0,120,0);
+            background: rgb(0, 120, 0);
             transform: translate(var(--spot-1-x), var(--spot-1-y));
         }
+
         .spot_2 {
-            background: rgb(0,0,120);
+            background: rgb(0, 0, 120);
             transform: translate(var(--spot-2-x), var(--spot-2-y));
         }
     </style>
@@ -519,38 +529,38 @@ a { color: <mark>#556832</mark>; }
     <h2><a href="https://github.com/mistakster/postcss-themes-generator">postcss-themes-generator</a></h2>
     <table style="table-layout: fixed;">
         <tbody>
-            <tr>
-                <th class="color-sample-col">&nbsp;</th>
-                <th class="color-sample-col">Website</th>
-                <th class="color-sample-col">Portal</th>
-                <th class="color-sample-col">Business</th>
-                <th class="color-sample-col">International</th>
-                <th></th>
-            </tr>
-            <tr>
-                <th>Primary</th>
-                <td><span class="color-sample" style="background: #e54096">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #e5352d">&nbsp;</span></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Secondary</th>
-                <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #044466">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #044466">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #007bc0">&nbsp;</span></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Accent</th>
-                <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
-                <td><span class="color-sample" style="background: #bd0a26">&nbsp;</span></td>
-                <td></td>
-            </tr>
+        <tr>
+            <th class="color-sample-col">&nbsp;</th>
+            <th class="color-sample-col">Website</th>
+            <th class="color-sample-col">Portal</th>
+            <th class="color-sample-col">Business</th>
+            <th class="color-sample-col">International</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Primary</th>
+            <td><span class="color-sample" style="background: #e54096">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #e5352d">&nbsp;</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Secondary</th>
+            <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #044466">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #044466">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #007bc0">&nbsp;</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Accent</th>
+            <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #c1d730">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #0080c5">&nbsp;</span></td>
+            <td><span class="color-sample" style="background: #bd0a26">&nbsp;</span></td>
+            <td></td>
+        </tr>
         </tbody>
     </table>
 </section>
@@ -599,7 +609,9 @@ a { color: <mark>#556832</mark>; }
     <h2>Условия задачи</h2>
     <ul>
         <li>Мы&nbsp;пишем CSS как обычно, используя цветовую схему главного сайта.</li>
-        <li>Мы&nbsp;используем модификаторы блока или элемента (&laquo;primary&raquo;, &laquo;secondary&raquo; и&nbsp;&laquo;accent&raquo;) для указания цвета.</li>
+        <li>Мы&nbsp;используем модификаторы блока или элемента (&laquo;primary&raquo;, &laquo;secondary&raquo;
+            и&nbsp;&laquo;accent&raquo;) для указания цвета.
+        </li>
         <li>Плагин для PostCSS генерирует дополнительные селекторы, изменяя в&nbsp;них цвет согласно схемы.</li>
     </ul>
 </section>
@@ -728,10 +740,14 @@ a { color: <mark>#556832</mark>; }
     <h2>Светлые и тёмные оттенки</h2>
     <pre>
         <code>.button_primary[disabled] { </code>
-        <code>  background: lighten(<span style="background: #e54096;" class="tiny-sample"></span> #e54096, 20%); <span class="comment">/* <span style="background: #f19ac7;" class="tiny-sample"></span> #f19ac7 */</span></code>
+        <code>  background: lighten(<span style="background: #e54096;" class="tiny-sample"></span> #e54096, 20%); <span
+                class="comment">/* <span style="background: #f19ac7;"
+                class="tiny-sample"></span> #f19ac7 */</span></code>
         <code>}</code>
         <code>.overlay_primary {</code>
-        <code>  background: darken(<span style="background: #e54096;" class="tiny-sample"></span> #e54096, 20%); <span class="comment">/* <span style="background: #a81763;" class="tiny-sample"></span> #a81763 */</span></code>
+        <code>  background: darken(<span style="background: #e54096;" class="tiny-sample"></span> #e54096, 20%); <span
+                class="comment">/* <span style="background: #a81763;"
+                class="tiny-sample"></span> #a81763 */</span></code>
         <code>}</code>
     </pre>
 </section>
@@ -740,67 +756,67 @@ a { color: <mark>#556832</mark>; }
     <h2>Светлые и тёмные оттенки</h2>
     <table>
         <tbody>
-            <tr>
-                <th>Тёмный</th>
-                <th>Базовый</th>
-                <th>Светлый</th>
-            </tr>
-            <tr>
-                <td>
-                    <span style="background: hsl(329, 76%, 37%);" class="tiny-sample"></span>
-                    hsl(329, 76%, 37%)
-                </td>
-                <td>
-                    <span style="background: hsl(329, 76%, 57%);" class="tiny-sample"></span>
-                    hsl(329, 76%, 57%)
-                </td>
-                <td>
-                    <span style="background: hsl(329, 76%, 77%);" class="tiny-sample"></span>
-                    hsl(329, 76%, 77%)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="background: hsl(201, 100%, 19%);" class="tiny-sample"></span>
-                    hsl(201, 100%, 19%)
-                </td>
-                <td>
-                    <span style="background: hsl(201, 100%, 39%);" class="tiny-sample"></span>
-                    hsl(201, 100%, 39%)
-                </td>
-                <td>
-                    <span style="background: hsl(201, 100%, 59%);" class="tiny-sample"></span>
-                    hsl(201, 100%, 59%)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="background: hsl(68, 68%, 32%);" class="tiny-sample"></span>
-                    hsl(68, 68%, 32%)
-                </td>
-                <td>
-                    <span style="background: hsl(68, 68%, 52%);" class="tiny-sample"></span>
-                    hsl(68, 68%, 52%)
-                </td>
-                <td>
-                    <span style="background: hsl(68, 68%, 72%);" class="tiny-sample"></span>
-                    hsl(68, 68%, 72%)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="background: hsl(3, 78%, 34%);" class="tiny-sample"></span>
-                    hsl(3, 78%, 34%)
-                </td>
-                <td>
-                    <span style="background: hsl(3, 78%, 54%);" class="tiny-sample"></span>
-                    hsl(3, 78%, 54%)
-                </td>
-                <td>
-                    <span style="background: hsl(3, 78%, 74%);" class="tiny-sample"></span>
-                    hsl(3, 78%, 74%)
-                </td>
-            </tr>
+        <tr>
+            <th>Тёмный</th>
+            <th>Базовый</th>
+            <th>Светлый</th>
+        </tr>
+        <tr>
+            <td>
+                <span style="background: hsl(329, 76%, 37%);" class="tiny-sample"></span>
+                hsl(329, 76%, 37%)
+            </td>
+            <td>
+                <span style="background: hsl(329, 76%, 57%);" class="tiny-sample"></span>
+                hsl(329, 76%, 57%)
+            </td>
+            <td>
+                <span style="background: hsl(329, 76%, 77%);" class="tiny-sample"></span>
+                hsl(329, 76%, 77%)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="background: hsl(201, 100%, 19%);" class="tiny-sample"></span>
+                hsl(201, 100%, 19%)
+            </td>
+            <td>
+                <span style="background: hsl(201, 100%, 39%);" class="tiny-sample"></span>
+                hsl(201, 100%, 39%)
+            </td>
+            <td>
+                <span style="background: hsl(201, 100%, 59%);" class="tiny-sample"></span>
+                hsl(201, 100%, 59%)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="background: hsl(68, 68%, 32%);" class="tiny-sample"></span>
+                hsl(68, 68%, 32%)
+            </td>
+            <td>
+                <span style="background: hsl(68, 68%, 52%);" class="tiny-sample"></span>
+                hsl(68, 68%, 52%)
+            </td>
+            <td>
+                <span style="background: hsl(68, 68%, 72%);" class="tiny-sample"></span>
+                hsl(68, 68%, 72%)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="background: hsl(3, 78%, 34%);" class="tiny-sample"></span>
+                hsl(3, 78%, 34%)
+            </td>
+            <td>
+                <span style="background: hsl(3, 78%, 54%);" class="tiny-sample"></span>
+                hsl(3, 78%, 54%)
+            </td>
+            <td>
+                <span style="background: hsl(3, 78%, 74%);" class="tiny-sample"></span>
+                hsl(3, 78%, 74%)
+            </td>
+        </tr>
         </tbody>
     </table>
 </section>
@@ -889,50 +905,50 @@ a { color: <mark>#556832</mark>; }
 
 <script src="shower/shower.min.js"></script>
 <script>
-	'use strict';
+    'use strict';
 
-	(function () {
-		const coverElement = document.getElementById('cover');
-		const params = [[2500, 3300], [3100, 2100], [2900, 2700]];
-		const start = Math.random() * 1e8 + 1e6;
-		let isRunning = false;
+    (function () {
+        const coverElement = document.getElementById('cover');
+        const params = [[2500, 3300], [3100, 2100], [2900, 2700]];
+        const start = Math.random() * 1e8 + 1e6;
+        let isRunning = false;
 
         function frame(t) {
-			for (let i = 0; i < params.length; i++) {
-				const x = Math.round(300 * Math.cos(t / params[i][0]));
-				const y = Math.round(200 * Math.sin(t / params[i][1]));
-				coverElement.style.setProperty('--spot-' + i + '-x', x + 'px');
-				coverElement.style.setProperty('--spot-' + i + '-y', y + 'px');
-			}
+            for (let i = 0; i < params.length; i++) {
+                const x = Math.round(300 * Math.cos(t / params[i][0]));
+                const y = Math.round(200 * Math.sin(t / params[i][1]));
+                coverElement.style.setProperty('--spot-' + i + '-x', x + 'px');
+                coverElement.style.setProperty('--spot-' + i + '-y', y + 'px');
+            }
         }
 
         function loop() {
-			window.requestAnimationFrame(function (time) {
-				frame(time + start);
-				if (isRunning) {
-					loop();
+            window.requestAnimationFrame(function (time) {
+                frame(time + start);
+                if (isRunning) {
+                    loop();
                 }
             });
         }
 
-		const observer = new MutationObserver((mutations) => {
-			mutations.forEach((mutation) => {
-				if (mutation.target.classList.contains('active')) {
-					if (isRunning) {
-						return;
-					}
-					isRunning = true;
-					loop();
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.classList.contains('active')) {
+                    if (isRunning) {
+                        return;
+                    }
+                    isRunning = true;
+                    loop();
                 } else {
-					isRunning = false;
+                    isRunning = false;
                 }
-			});
-		});
-
-		observer.observe(coverElement, {
-			attributes: true
+            });
         });
-	}());
+
+        observer.observe(coverElement, {
+            attributes: true
+        });
+    }());
 </script>
 
 </body>
