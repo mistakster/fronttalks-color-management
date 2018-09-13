@@ -121,7 +121,7 @@
 </section>
 
 <section class="slide">
-    <h2>PostCSS разбирает CSS в AST</h2>
+    <h2>PostCSS преобразует CSS в AST</h2>
     <img src="img/postcss-schematic1.svg" alt="PostCSS конвертирует CSS в AST и обратно">
 </section>
 
@@ -157,8 +157,8 @@
                 <li>postcss-at2x</li>
             </ul>
             <ul class="next">
-                <li>postcss-aspect-ratio</li>
-                <li>postcss-zindex</li>
+                <li>postcss-bem-to-js</li>
+                <li>postcss-click</li>
             </ul>
         </div>
     </div>
@@ -175,10 +175,8 @@
             <ul class="next">
                 <li>postcss-clearfix</li>
                 <li>postcss-focus</li>
-            </ul>
-            <ul class="next">
-                <li>postcss-bem-to-js</li>
-                <li>postcss-click</li>
+                <li>postcss-aspect-ratio</li>
+                <li>postcss-zindex</li>
             </ul>
         </div>
         <div>
@@ -374,7 +372,7 @@ a { color: <mark>#556832</mark>; }
         <code>root.walkDecls(decl => {</code>
         <code>  const parsedValue = cssTree.parse(</code>
         <code>    decl.value,</code>
-        <code>    { context: 'value' }</code>
+        <code class="mark next">    { context: 'value' }</code>
         <code>  );</code>
         <code>  // тут можно модифицировать parsedValue</code>
         <code>  decl.value = cssTree.generate(parsedValue);</code>
@@ -433,6 +431,11 @@ a { color: <mark>#556832</mark>; }
         <li>HexColor <span class="c">#2F4F4F</span></li>
         <li>Function <span class="c">rgb(47, 79, 79) или hsl(180, 25%, 25%)</span></li>
     </ul>
+    <p>
+        <a href="https://github.com/csstree/csstree/blob/master/docs/traversal.md">
+            Документация по обходу AST CSSTree
+        </a>
+    </p>
 </section>
 
 <section class="slide">
